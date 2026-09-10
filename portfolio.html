@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adarsh Das Ella — Data Analyst &amp; Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F3F0;
+    --surface:#FFFFFF;
+    --ink:#16211D;
+    --muted:#5B675E;
+    --teal:#1E7A6E;
+    --amber:#C97A2B;
+    --line:#D6DCD3;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--ink); color:var(--bg);
+    padding:10px 16px; z-index:200;
+  }
+  .skip-link:focus{left:16px; top:16px;}
+
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(241,243,240,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px; font-weight:500;
+    text-decoration:none;
+    color:var(--ink);
+    letter-spacing:0.02em;
+  }
+  .logo span{color:var(--teal);}
+  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    text-decoration:none; font-size:14.5px; color:var(--muted);
+    padding:4px 0; border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--ink); border-color:var(--teal);}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); border-radius:4px; padding:8px 10px; cursor:pointer;}
+  .menu-btn span{display:block; width:18px; height:2px; background:var(--ink); margin:3px 0;}
+
+  .hero{padding:88px 0 72px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--teal);
+    margin-bottom:14px;
+  }
+  .hero h1{font-size:44px; line-height:1.12; margin-bottom:18px;}
+  .hero p.role{font-size:18px; color:var(--muted); margin-bottom:20px;}
+  .hero p.desc{font-size:16px; color:var(--ink); max-width:52ch; margin-bottom:28px;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:12px 20px; font-size:14.5px; font-weight:500;
+    text-decoration:none; border-radius:3px; transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--bg);}
+  .btn-primary:hover{background:var(--teal);}
+  .btn-ghost{border:1px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  .readout{
+    background:var(--ink); color:#DDE7E2;
+    border-radius:6px; padding:26px 26px 20px;
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+  }
+  .readout .rtitle{color:#7FBBAF; font-size:12px; margin-bottom:16px; letter-spacing:0.02em;}
+  .readout .rrow{
+    display:flex; justify-content:space-between; gap:12px;
+    padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .readout .rrow:last-child{border-bottom:none;}
+  .readout .rlabel{color:#9BAAA2;}
+  .readout .rval{color:#F1F3F0; font-weight:500; text-align:right;}
+  .readout .rval.hi{color:#7FBBAF;}
+
+  section{padding:64px 0;}
+  section.alt{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:40px; max-width:60ch;}
+  .section-head .eyebrow{margin-bottom:8px;}
+  .section-head h2{font-size:28px;}
+
+  .timeline{display:flex; flex-direction:column; gap:0;}
+  .tl-item{
+    display:grid; grid-template-columns:150px 1fr; gap:28px;
+    padding:28px 0; border-top:1px solid var(--line);
+    position:relative;
+  }
+  .tl-item:last-child{border-bottom:1px solid var(--line);}
+  .tl-date{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted);
+    padding-top:3px;
+  }
+  .tl-date .current{
+    display:inline-block; margin-top:8px; font-size:11px; color:var(--amber);
+    border:1px solid var(--amber); border-radius:3px; padding:2px 6px;
+  }
+  .tl-role{font-size:19px; font-family:'Source Serif 4', serif; font-weight:600; margin-bottom:2px;}
+  .tl-org{font-size:14.5px; color:var(--teal); margin-bottom:12px;}
+  .tl-item ul{margin:0; padding-left:18px; color:var(--ink);}
+  .tl-item li{margin-bottom:7px; font-size:15px;}
+  .tl-item li::marker{color:var(--teal);}
+
+  .proj-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:24px;}
+  .proj{
+    background:var(--surface); border:1px solid var(--line); border-radius:6px;
+    padding:28px;
+  }
+  .proj h3{font-size:20px; margin-bottom:10px;}
+  .proj p{font-size:15px; color:var(--ink); margin:0 0 16px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--teal);
+    border:1px solid var(--teal); border-radius:3px; padding:3px 8px;
+  }
+
+  .skill-groups{display:grid; grid-template-columns:1fr 1fr; gap:32px 48px;}
+  .skill-group h3{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:500;
+    color:var(--muted); margin-bottom:12px;
+  }
+  .skill-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-tags span{
+    font-size:13.5px; background:var(--surface); border:1px solid var(--line);
+    border-radius:3px; padding:5px 10px; color:var(--ink);
+  }
+
+  .edu-block{max-width:70ch;}
+  .edu-block .degree{font-size:22px; margin-bottom:4px;}
+  .edu-block .school{color:var(--teal); font-size:15px; margin-bottom:14px;}
+  .edu-meta{color:var(--muted); font-size:14.5px; margin-bottom:10px;}
+
+  .contact-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:start;}
+  .contact-list{list-style:none; margin:0; padding:0;}
+  .contact-list li{
+    padding:14px 0; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; font-size:15px;
+  }
+  .contact-list li:last-child{border-bottom:1px solid var(--line);}
+  .contact-list .clabel{color:var(--muted); font-family:'IBM Plex Mono', monospace; font-size:13px;}
+  .contact-list a{text-decoration:none; border-bottom:1px solid var(--line);}
+  .contact-list a:hover{border-color:var(--teal); color:var(--teal);}
+
+  footer{padding:32px 0; text-align:center; color:var(--muted); font-size:13px;}
+
+  .reveal{opacity:0; transform:translateY(14px); animation:rise .7s ease forwards;}
+  .reveal.d1{animation-delay:.05s;}
+  .reveal.d2{animation-delay:.15s;}
+  .reveal.d3{animation-delay:.25s;}
+  @keyframes rise{to{opacity:1; transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{animation:none; opacity:1; transform:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .skill-groups{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .navlinks{
+      position:absolute; top:64px; left:0; right:0; background:var(--bg);
+      flex-direction:column; gap:0; border-bottom:1px solid var(--line);
+      display:none;
+    }
+    .navlinks.open{display:flex;}
+    .navlinks a{padding:14px 32px; width:100%; border-bottom:1px solid var(--line);}
+    .menu-btn{display:block;}
+    .tl-item{grid-template-columns:1fr;}
+    .hero h1{font-size:34px;}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#top">AD<span>E</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow reveal d1">DATA ANALYST · DATA ENGINEER</div>
+        <h1 class="reveal d1">Adarsh Das Ella</h1>
+        <p class="role reveal d2">I turn fragmented, high-volume data into pipelines and reporting people can trust.</p>
+        <p class="desc reveal d2">Two years building ETL pipelines, automating reporting workflows, and validating enterprise-scale data migrations — with an M.S. in Data Analytics from UT Dallas. Based in Charlotte, NC.</p>
+        <div class="cta-row reveal d3">
+          <a class="btn btn-primary" href="#contact">Get in touch</a>
+          <a class="btn btn-ghost" href="Adarsh_Das_Ella_Resume.pdf">Download résumé</a>
+        </div>
+      </div>
+      <div class="readout reveal d3">
+        <div class="rtitle">career_metrics.log</div>
+        <div class="rrow"><span class="rlabel">records migrated, zero data loss</span><span class="rval hi">100,000+</span></div>
+        <div class="rrow"><span class="rlabel">data integrity at cutover</span><span class="rval hi">100%</span></div>
+        <div class="rrow"><span class="rlabel">downstream failures reduced</span><span class="rval">−30%</span></div>
+        <div class="rrow"><span class="rlabel">data accuracy improved</span><span class="rval">+25%</span></div>
+        <div class="rrow"><span class="rlabel">migration time cut (SAP BODS)</span><span class="rval">−40%</span></div>
+        <div class="rrow"><span class="rlabel">reusable ETL jobs built</span><span class="rval">15+</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">EXPERIENCE</div>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date mono">May 2025 — Jun 2026<br><span class="current">Most recent</span></div>
+          <div>
+            <div class="tl-role">Network Engineer, Systems &amp; Software Engineering</div>
+            <div class="tl-org">Tech Mahindra Americas · Plano, TX</div>
+            <ul>
+              <li>Automated recurring data-processing and reporting workflows in Python, removing manual steps and improving reporting accuracy and turnaround</li>
+              <li>Analyzed system and performance telemetry in Splunk and SolarWinds, applying trend analysis to catch degradations before customer impact</li>
+              <li>Owned data validation and regression testing for system migration projects end-to-end, ensuring service continuity and zero data loss at cutover</li>
+              <li>Documented processes and translated technical detail for cross-functional, non-technical stakeholders across US and India time zones</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date mono">Jun 2024 — May 2025</div>
+          <div>
+            <div class="tl-role">Data and Systems Intern</div>
+            <div class="tl-org">Tech Mahindra Americas · Plano, TX</div>
+            <ul>
+              <li>Built and validated SQL datasets of 50,000+ records, raising measured accuracy 25% through query design and integrity checks</li>
+              <li>Developed Python automation that cut potential downstream failures 30% via earlier detection of malformed records</li>
+              <li>Built interactive Power BI dashboards with DAX measures, converting raw log and traffic data into decision-ready views</li>
+              <li>Designed MongoDB schemas for efficient retrieval at volume, weighing read patterns against write cost</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date mono">Aug 2021 — Jul 2023</div>
+          <div>
+            <div class="tl-role">Packaged App Development Associate</div>
+            <div class="tl-org">Accenture Solutions Pvt Ltd · Hyderabad, India</div>
+            <ul>
+              <li>Led ETL design and end-to-end data migration across projects covering 100,000+ records, achieving 100% data integrity at cutover</li>
+              <li>Built 15+ reusable transformation jobs in SAP BODS across heterogeneous data types, cutting migration time 40%</li>
+              <li>Designed complex SQL queries, decode functions, and transforms to prepare and validate data, improving accuracy 40%</li>
+              <li>Supported Go-Live alongside client and QA teams, contributing to a 20% reduction in implementation time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">PROJECTS</div>
+        <h2>Things I've built</h2>
+      </div>
+      <div class="proj-grid">
+        <div class="proj">
+          <h3>Big Data Analytics Pipeline</h3>
+          <p>Ingested and validated 50,000+ API-sourced records into HDFS via Flume, improving retrieval 30%. Migrated 4 datasets from MySQL to Hive using Sqoop, then processed 100,000+ records with Spark RDDs and DataFrames for a 25% throughput gain.</p>
+          <div class="chips">
+            <span class="chip">Hadoop</span><span class="chip">Hive</span><span class="chip">Spark</span><span class="chip">Sqoop</span><span class="chip">Flume</span>
+          </div>
+        </div>
+        <div class="proj">
+          <h3>Sentiment Analysis on Scraped Tweets</h3>
+          <p>End-to-end pipeline classifying 10,000+ tweets into positive, negative, and neutral sentiment. Applied text preprocessing and iterative model tuning to reach 98% accuracy on a held-out set.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">NLP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">SKILLS</div>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="skill-tags">
+            <span>Python</span><span>SQL (T-SQL, PL/SQL)</span><span>DAX</span><span>Shell scripting</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Data engineering &amp; ETL</h3>
+          <div class="skill-tags">
+            <span>ETL design</span><span>SAP BODS</span><span>Data migration</span><span>Validation &amp; QA</span><span>Spark</span><span>Hive</span><span>Sqoop</span><span>Flume</span><span>Hadoop / HDFS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Databases &amp; cloud</h3>
+          <div class="skill-tags">
+            <span>SQL Server</span><span>MySQL</span><span>Oracle</span><span>PostgreSQL</span><span>MongoDB</span><span>Snowflake</span><span>Databricks</span><span>Splunk</span><span>SolarWinds</span><span>Git</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Reporting &amp; AI/ML</h3>
+          <div class="skill-tags">
+            <span>Power BI</span><span>Tableau</span><span>Advanced Excel</span><span>pandas</span><span>NumPy</span><span>scikit-learn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow mono">EDUCATION</div>
+        <h2>Foundation</h2>
+      </div>
+      <div class="edu-block">
+        <div class="degree">M.S. Information Technology and Management — Data Analytics</div>
+        <div class="school">University of Texas at Dallas · Richardson, TX</div>
+        <div class="edu-meta">Dec 2024 · Dean's Excellence Scholarship</div>
+        <p>Coursework: Big Data Analytics, Machine Learning, Database Management, Data Visualization</p>
+        <p style="color:var(--muted); font-size:14.5px;">Certifications: Data Analysis with Python · Analyzing and Visualizing Data with Power BI · CCNA</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="alt">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow mono">CONTACT</div>
+        <h2 style="margin-bottom:16px;">Let's talk data.</h2>
+        <p style="max-width:48ch; color:var(--ink);">If you're hiring for a data analyst, data engineer, or BI role — or just want to talk about a messy dataset — reach out. I'm currently based in Charlotte, NC and open to hybrid or relocation opportunities.</p>
+      </div>
+      <ul class="contact-list">
+        <li><span class="clabel">EMAIL</span><a href="mailto:Adarshdase@gmail.com">Adarshdase@gmail.com</a></li>
+        <li><span class="clabel">PHONE</span><a href="tel:+19455274265">945-527-4265</a></li>
+        <li><span class="clabel">LINKEDIN</span><a href="https://linkedin.com/in/adarshdasella" target="_blank" rel="noopener">linkedin.com/in/adarshdasella</a></li>
+        <li><span class="clabel">LOCATION</span><span>Charlotte, NC</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Adarsh Das Ella · Built with plain HTML &amp; CSS</div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  navlinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navlinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
